@@ -1,8 +1,9 @@
 {
   "esy": {
-    "build": "hello"
+    "//": "TODO: compile a simple program",
+    "build": "true"
   },
   "dependencies": {
-    "esy-hello": "*"
+    "esy-afl": "*"
   }
 }

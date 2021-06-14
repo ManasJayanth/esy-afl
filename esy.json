@@ -1,21 +1,16 @@
 {
-  "//": "Keys that start with // are ignored",
-  "name": "esy-hello",
-  "version": "0.0.1000",
-  "// version": "See readme and docs on how to version packages",
-  "description": "hello packaged for esy",
-  "source": "https://github.com/esy/test-hello-c/archive/0.1.0.zip#sha256:e1bd9924eb5d97d99c9b87f9a4a95b734e111cd6dd01464358029c751d57d693",
+  "name": "esy-afl",
+  "version": "2.57.0-b",
+  "description": "AFL packaged for esy",
+  "source": "https://github.com/google/AFL/archive/v2.57b.tar.gz#sha256:6f05a6515c07abe49f6f292bd13c96004cc1e016bda0c3cc9c2769dd43f163ee",
   "override": {
     "buildEnv": {
-      "//": "Only for illustrative purpose. Not a real, useful package",
-      "PREFIX": "$cur__install",
       "CC_PREFIX": "#{os == 'windows' ? 'x86_64-w64-mingw32-': '' }"
     },
-    "build": ["./configure", "make"],
-    "install": "make install",
+    "build": ["make PREFIX=#{self.install} AFL_NO_X86=1"],
+    "install": ["make PREFIX=#{self.install} AFL_NO_X86=1 install"],
     "buildsInSource": true,
     "exportedEnv": {
-      "//": "This is just an example",
       "PKG_CONFIG_PATH": {
         "val": "#{self.lib / 'pkgconfig'}",
         "scope": "global"
